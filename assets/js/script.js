@@ -1,11 +1,14 @@
 
-// Array of alphabet
+// Array of alphabet/numbers and special characters
 var lowercasealfa = "abcdefghijklmnopqrstuvwxyz";
 var Upercasealfa="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var numbers = "0123456789";
 var symbols = "!@#$%^&*_-+=";
 
-//bring user options
+//Recover text area 
+var contEl= document.querySelector("#password");
+
+//Recover user options
 var strlengthEl = document.getElementById("length");
 var inclettersEl = document.getElementById("typeLetters");
 var incSymbolsEl = document.getElementById("spec");
@@ -39,11 +42,15 @@ var validatedata = function(){
       break;
   }
   var passwordTxt = generatePassword(strlengthEl.value, characters);
-  console.log(passwordTxt)
+  SetpasswordText(passwordTxt)
+ 
+}
+
+  function SetpasswordText(text)
+  {
+      contEl.textContent= text;
   }
-
-
-
+  
 // Assignment code here
 var generatePassword = (length, characters) => {
   let passcode = "";
