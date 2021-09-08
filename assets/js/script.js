@@ -41,6 +41,21 @@ var validatedata = function(){
       window.alert('You did not pick a valid option. Try again.');
       break;
   }
+      // use switch case to built the string based onn user choices
+      switch (incSymbolsEl.value) {
+        case 'NS':    //Include Numbers and Symbols
+              characters= characters + numbers+ symbols;
+               break;
+        case 'ON':    //Only Include Numbers
+              characters= characters + numbers;
+              break;
+        case 'OS':    //Only Symbols
+              characters= characters + symbols;
+              break;
+        default:
+          window.alert('You did not pick a valid option. Try again.');
+          break;
+      }
   var passwordTxt = generatePassword(strlengthEl.value, characters);
   SetpasswordText(passwordTxt)
  
@@ -66,8 +81,6 @@ function copyPassword() {
   contEl.select();
   document.execCommand("copy");  
 }
-
-
 
 // Add event listener to generate button
 
