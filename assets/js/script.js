@@ -1,24 +1,24 @@
 
-// Array of alphabet/numbers and special characters
+// Array of alphabet/numbers and special characters to be used
 var lowercasealfa = "abcdefghijklmnopqrstuvwxyz";
 var Upercasealfa="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var numbers = "0123456789";
 var symbols = "!@#$%^&*_-+=";
 
 //Recover text area 
-var contEl= document.querySelector("#password");
+var contEl= document.querySelector("#password");  //need it to display the passowrd on area text
 
-//Recover user options
-var strlengthEl = document.getElementById("length");
+//Recover and stire what the user selected
+var strlengthEl = document.getElementById("length");  
 var inclettersEl = document.getElementById("typeLetters");
 var incSymbolsEl = document.getElementById("spec");
 
 
-// Get references to the #generate element
+// Get references to the #generate and #copy (buttons)
 var generateBtn = document.querySelector("#generate");
-var copyBtn = document.getElementById("copy");
+var copyBtn = document.getElementById("#copy");
 
-// Add event listener to generate button
+//Validate user choises before generating password
 var validatedata = function(){
      let characters = " ";
     // check if inputs are empty (validate)
@@ -26,7 +26,7 @@ var validatedata = function(){
              alert("You need to enter a number between 8 to 128");
     return false;
     }
-    // use switch case to built the string to chose password
+    // use switch case to built the string based onn user choices
     switch (inclettersEl.value) {
     case 'UL':    //Include Upercase and LowerCase Letters
           characters= lowercasealfa + Upercasealfa;
@@ -45,13 +45,8 @@ var validatedata = function(){
   SetpasswordText(passwordTxt)
  
 }
-
-  function SetpasswordText(text)
-  {
-      contEl.textContent= text;
-  }
   
-// Assignment code here
+// Generate the password
 var generatePassword = (length, characters) => {
   let passcode = "";
   for (let i = 0; i < length; i++) {
@@ -60,77 +55,19 @@ var generatePassword = (length, characters) => {
   }
   return passcode;
 }
-  
 
-
-/***
-// Add event listener to generate button
-generateBtn.addEventListener("click", genPassword);
-// Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-  passwordText.value = password;
-
+//Print password on the text area
+function SetpasswordText(text)
+{
+    contEl.textContent= text;
 }
 
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
-
-
-
- function copyPassword() {
-  var copyText = document.getElementById("password");
-  copyText.select();
+function copyPassword() {
+  contEl.select();
   document.execCommand("copy");  
 }
 
 
-var formEl = document.querySelector("#task-form");
-var tasksToDoEl = document.querySelector("#tasks-to-do");
 
-var taskFormHandler = function(event) {
-  event.preventDefault();
-  var taskNameInput = document.querySelector("input[name='task-name'").value;
-  var taskTypeInput = document.querySelector("select[name='task-type']").value;
+// Add event listener to generate button
 
-  // check if inputs are empty (validate)
-  if (taskNameInput === "" || taskTypeInput === "") {
-    alert("You need to fill out the task form!");
-    return false;
-  }
-  
-  formEl.reset();
-
-  // reset form fields for next task to be entered
-  document.querySelector("input[name='task-name']").value = "";
-  document.querySelector("select[name='task-type']").selectedIndex = 0;
-
-  var taskDataObj = {
-    name: taskNameInput,
-    type: taskTypeInput
-  };
-
-  createTaskEl(taskDataObj);
-};
-
-var createTaskEl = function(taskDataObj) {
-  // create list item
-  var listItemEl = document.createElement("li");
-  listItemEl.className = "task-item";
-
-  // create div to hold task info and add to list item
-  var taskInfoEl = document.createElement("div");
-  taskInfoEl.className = "task-info";
-  taskInfoEl.innerHTML = "<h3 class='task-name'>" + taskDataObj.name + "</h3><span class='task-type'>" + taskDataObj.type + "</span>";
-  listItemEl.appendChild(taskInfoEl);
-
-  console.dir(listItemEl);
-
-  // add list item to list
-  tasksToDoEl.appendChild(listItemEl);
-};
-
-formEl.addEventListener("submit", taskFormHandler);
- */
