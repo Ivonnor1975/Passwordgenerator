@@ -8,27 +8,55 @@
     <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
   <body>
-    <div class="wrapper">
+      <div class="wrapper">
       <header>
         <h1>Password Generator</h1>
       </header>
+      <main>
       <div class="card">
-        <div class="card-header">
-          <h2>Generate a Password</h2>
+          <div class="card-header">
+            <h2>Generate a Password</h2>
+            </div>
+              <div class="card-body">
+                <textarea
+                  readonly
+                  id="password"
+                  placeholder="Your Secure Password"
+                  aria-label="Generated Password"
+                ></textarea>
+              </div>
+              <div class="options">
+                    <div class="option">
+                        <label>Enter Password Length (8-128 Characters): </label>
+                        <input type="number" id="length" min="8" max="128"  value="14" >
+                    </div>
+                    <div class="option">
+                          <label for="typeLetters">Choose Letter options:</label>
+                          <select id="typeLetters" name="typeLetters">
+                            <option value="UL">Include Upercase and LowerCase Letters</option>
+                            <option value="OU">Only Include Uppercase letters</option>
+                            <option value="OL">Only Include LowerCase Letters</option>
+                          </select>
+                    </div>
+                    <div class="option">
+                          <label for="Spec">Choose special Characters options:</label>
+                          <select id="spec" name="spec">
+                              <option value="NS">Include Numbers and Symbols</option>
+                              <option value="ON">Only Include Numbers</option>
+                              <option value="OS">Only Symbols</option>
+                          </select>
+                    </div>
+              </div>
+              <div class="card-footer">
+                  <table>
+                    <th><div id="generate" class="btn1"onclick="validatedata()">Generate</div></th>
+                    <th><a  id="copy" class="btn2" onclick="copyPassword()">Copy</a></th>
+                </table>
+              </div>
         </div>
-        <div class="card-body">
-          <textarea
-            readonly
-            id="password"
-            placeholder="Your Secure Password"
-            aria-label="Generated Password"
-          ></textarea>
-        </div>
-        <div class="card-footer">
-          <button id="generate" class="btn">Generate Password</button>
-        </div>
-      </div>
-    </div>
-    <script src="script.js"></script>
+      </main>
+
+     <!-- This is the Javascript document-->
+     <script src="./assets/js/script.js"></script>
   </body>
 </html>
