@@ -74,7 +74,7 @@ header {
 }
 
 
-.option, input, select{
+.option, input{
   line-height: 22px;
   margin: 5px;
  }
@@ -104,9 +104,6 @@ button[disabled] {
   color: white;
   background-color: black;
 }
-.float-right {
-  float: right;
-}
 
 #password {
   -webkit-appearance: none;
@@ -135,7 +132,7 @@ button[disabled] {
     margin: 16px 0px 0px 0px;
     padding: 10px 15px;
   }
-  .option, input, select{
+  .option, input{
     line-height: 1.5em;
   }
   #password {
@@ -147,7 +144,7 @@ button[disabled] {
   .btn1, .btn2{
     font-size: 0.8rem;
   }
-  .option, input, select{
+  .option, input{
     line-height: 1em;
   }
 }
