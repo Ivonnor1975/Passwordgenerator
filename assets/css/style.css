@@ -73,6 +73,12 @@ header {
   clear: both;
 }
 
+
+.option, input, select{
+  line-height: 22px;
+  margin: 5px;
+ }
+
 .btn1, .btn2 {
   border: none;
   background-color: hsl(360, 91%, 36%);
@@ -94,7 +100,7 @@ button[disabled] {
   background: #c0c7cf;
 }
 
-#button:hover, #generate:hover {
+#copy:hover, #generate:hover {
   color: white;
   background-color: black;
 }
@@ -129,7 +135,9 @@ button[disabled] {
     margin: 16px 0px 0px 0px;
     padding: 10px 15px;
   }
-
+  .option, input, select{
+    line-height: 1.5em;
+  }
   #password {
     font-size: 1rem;
   }
@@ -138,5 +146,8 @@ button[disabled] {
 @media (max-width: 500px) {
   .btn1, .btn2{
     font-size: 0.8rem;
+  }
+  .option, input, select{
+    line-height: 1em;
   }
 }

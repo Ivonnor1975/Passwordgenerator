@@ -8,58 +8,48 @@ var symbols = "!@#$%^&*_-+=";
 //Recover text area 
 var contEl= document.querySelector("#password");  //need it to display the passowrd on area text
 
-//Recover and stire what the user selected
-var strlengthEl = document.getElementById("length");  
-var inclettersEl = document.getElementById("typeLetters");
-var incSymbolsEl = document.getElementById("spec");
-
-
-// Get references to the #generate and #copy (buttons)
-var generateBtn = document.querySelector("#generate");
-var copyBtn = document.getElementById("#copy");
-
 //Validate user choises before generating password
 var validatedata = function(){
-     let characters = " ";
-    // check if inputs are empty (validate)
+     var characters = "";
+     var count=0;
+    //Recover and store what the user selected
+    var strlengthEl = document.getElementById("length"); 
+     var incuclettersEl = document.querySelector('#ucletters');
+     var inclwlettersEl = document.querySelector("#lwletters");
+     var incnumbersEl = document.querySelector("#numbers");
+     var incSymbolsEl = document.querySelector("#symbols");
+     
+     // check if inputs are empty (validate)
     if (strlengthEl.value < 8 || strlengthEl.value > 128){
              alert("You need to enter a number between 8 to 128");
     return false;
-    }
-    // use switch case to built the string based onn user choices
-    switch (inclettersEl.value) {
-    case 'UL':    //Include Upercase and LowerCase Letters
-          characters= lowercasealfa + Upercasealfa;
-           break;
-    case 'OU':    //Only Include Uppercase letters
-          characters= Upercasealfa;
-          break;
-    case 'OL':    //Only Include LowerCase Letters
-          characters= lowercasealfa
-          break;
-    default:
-      window.alert('You did not pick a valid option. Try again.');
-      break;
-  }
-      // use switch case to built the string based onn user choices
-      switch (incSymbolsEl.value) {
-        case 'NS':    //Include Numbers and Symbols
-              characters= characters + numbers+ symbols;
-               break;
-        case 'ON':    //Only Include Numbers
-              characters= characters + numbers;
-              break;
-        case 'OS':    //Only Symbols
-              characters= characters + symbols;
-              break;
-        default:
-          window.alert('You did not pick a valid option. Try again.');
-          break;
-      }
-  var passwordTxt = generatePassword(strlengthEl.value, characters);
-  SetpasswordText(passwordTxt)
- 
-}
+    };
+    //check if user checked at lesst one criteria
+    // built the string based on user choices
+    if(incuclettersEl.checked ){    //include upper case letters
+      count++;
+      characters=characters+ Upercasealfa;
+    };
+    if(inclwlettersEl.checked){    //include lower case letters
+      count++;
+      characters= characters+ lowercasealfa;
+    };
+    if(incnumbersEl.checked){    //include numbers
+      count++;
+      characters= characters+ numbers;
+    };
+    if(incSymbolsEl.checked){    //include symbols
+      count++;
+      characters= characters+ symbols;
+    };
+     //check if user checked at lesst one criteria
+    if (count < 1 ){
+        alert("You need to select at least one character type: Letters, Numbers and/or Symbols");
+        return false;
+    }; 
+    var passwordTxt = generatePassword(strlengthEl.value, characters);  //call function to gen password 
+    SetpasswordText(passwordTxt)                                        // call function to display password on text area 
+};
   
 // Generate the password
 var generatePassword = (length, characters) => {
@@ -69,18 +59,19 @@ var generatePassword = (length, characters) => {
     );
   }
   return passcode;
-}
+};
 
 //Print password on the text area
 function SetpasswordText(text)
 {
     contEl.textContent= text;
-}
+};
 
-function copyPassword() {
+function copyPassword() {      //copy password on windows clickboard
+  if (!contEl.textContent){   //validate user does not click on copy buttom before gen password
+    alert("Please Click on Generate Buttom first");
+    return false;
+  }
   contEl.select();
   document.execCommand("copy");  
-}
-
-// Add event listener to generate button
-
+};
